@@ -31,11 +31,19 @@ const displayLevelWords = words => {
         const wordDiv = document.createElement('div');
         wordDiv.innerHTML = `
             <div
-            class="bg-white rounded-xl shadow-sm text-center py-20 px-5 space-y-6"
-        >
-            <h2 class="text-3xl font-bold">${word.word}</h2>
-            <p class="text-xl font-medium">Meaning /Pronounciation</p>
-            <div class="font-bangla text-3xl font-bold">"${word.meaning} / ${word.pronunciation}"</div>
+        class="bg-white rounded-xl shadow-sm text-center py-10 px-5 space-y-6"
+      >
+        <h2 class="text-3xl font-bold">${word.word}</h2>
+        <p class="text-xl font-medium">Meaning /Pronounciation</p>
+        <div class="font-bangla text-3xl font-bold">
+          "${
+            word.meaning ? word.meaning : 'No Meaning'
+          } / ${word.pronunciation}"
+        </div>
+        <div class="flex justify-between items-center">
+          <button class="btn bg-[#1A91FF10] rounded-lg"><i class="fa-solid fa-circle-info"></i></button>
+          <button class="btn bg-[#1A91FF10] rounded-lg"><i class="fa-solid fa-volume-high"></i></button>
+        </div>
       </div>
         `;
         wordContainer.appendChild(wordDiv);
