@@ -61,9 +61,10 @@ const displayWordDetails = word => {
           </div>
           <div>
             <h2 class="font-bold">সমার্থক শব্দ গুলো</h2>
-            <span class="btn">Btn</span>
-            <span class="btn">Btn</span>
-            <span class="btn">Btn</span>
+            
+            ${
+                word.synonyms.map(synonym => `<span class="btn">${synonym}</span>`)
+            }
           </div>
     `;
     document.getElementById('word_detail').showModal();
