@@ -8,6 +8,20 @@ const loadLevels = async () => {
         console.error('Error fetching levels: ', error);
     }
 }
+// show Loading Spinner
+const showLoading = () => {
+    const spinner = document.getElementById('spinner');
+    const wordContainer = document.getElementById('wordContainer');
+    spinner.classList.remove('hidden');
+    wordContainer.classList.add('hidden');
+}
+// hide loading spinner
+const hideLoading = () => {
+    const spinner = document.getElementById('spinner');
+    const wordContainer = document.getElementById('wordContainer');
+    spinner.classList.add('hidden');
+    wordContainer.classList.remove('hidden');
+}
 // remove active class
 const removeActiveClass = () => {
     const allActiveBtns = document.getElementsByClassName('lesson-btn');
@@ -21,6 +35,7 @@ const removeActiveClass = () => {
 
 // load level wise words via ID
 const loadLevelWords = async levelNo => {
+    showLoading();
     try {
         const res = await fetch(`https://openapi.programming-hero.com/api/level/${levelNo}`);
         const data = await res.json();
@@ -33,6 +48,7 @@ const loadLevelWords = async levelNo => {
     } catch (error) {
         console.error('Error fetching lesson words: ', error);
     }
+    hideLoading();
 }
 // load word details
 const loadWordDetails = async (wordID) => {
@@ -71,6 +87,7 @@ const displayWordDetails = word => {
 }
 // show level words
 const displayLevelWords = words => {
+    showLoading();
     const wordContainer = document.getElementById('wordContainer');
     // clear wordContainer section
     wordContainer.innerHTML = '';
@@ -86,7 +103,8 @@ const displayLevelWords = words => {
                 নেক্সট Lesson এ যান
                 </h2>
             </div>
-        `
+        `;
+        hideLoading();
         return;
     }
     // console.log(words);
@@ -111,6 +129,7 @@ const displayLevelWords = words => {
         `;
         wordContainer.appendChild(wordDiv);
     })
+    hideLoading();
     // clear wordContainer section
     // wordContainer.innerHTML = '';
 }
